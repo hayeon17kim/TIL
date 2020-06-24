@@ -1,13 +1,350 @@
-### 7주차 2강: 기본 위젯 활용하기
+### 1. Android Programming Outline
 
-#### 컴파운드 버튼
+##### 주요 기능
 
-- 컴파운드 버튼(Compound Button)
+- 코드를 재사용하여 효율적이고 빠른 애플리케이션 개발 가능
+  - 애플리케이션 프레임워크를 통해서 제공되는 API 사용
+- 모바일 기기에 최적화된 달빅 또는 아트런타임 제공
+- 2D 그래픽 및 삼차원 그래픽을 최적화하여 표현
+- 모바일용 데이터베이스인 SQLite 제공
+- 오디오, 비디오 및 이미지 형식 지원
+- 모바일 기기에 내장된 하드웨어 지원
+  - ex) 블루투스, 카메라, 나침반, WiFi 등
+- 이클립스 IDE 또는 Android Studio를 통해 개발 환경 제공
 
-* Button 클래스의 하위 클래스
-* 체크박스, 라디오버튼, 스위치, 토글버튼의 상위 클래스
+#### 특징
 
-- 계층도
+![image](https://user-images.githubusercontent.com/50407047/85373569-6c866b00-b56e-11ea-9d1f-3be2e5dc576e.png)
+
+#### 안드로이드 운영체제 및 애플리케이션
+
+안드로이드의 구조
+
+- 응용 프로그램 (Applications)
+  - 안드로이드 스마트폰에서 사용할 수 있는 일반적인 응용 프로그램
+  - => 사용자 입장에서 가장 많이 사용 (웹 브라우저, 달력, 구글맵, 연락처, 게임 등)
+- 응용 프로그램 프레임워크 (Application Framework)
+  - 안드로이드 API가 존재하는 곳
+  - 안드로이드 폰 하드웨어에 접근할 때는 Java에 직접 접근하는 것이 아니라 API를 통해서 가능
+- 안드로이드 런타임 (Android Runtime)
+  - Java 코어 라이브러리
+  - 달빅 가상머신 (Dalvik Virtual Machine)
+  - 아트 런타임 (ART Runtime)
+- 라이브러리 (Libraries)
+  - 안드로이드에서 사용되는 여러 시스템 라이브러리
+  - => 시스템 접근 때문에 Java가 아닌 C로 작성
+- 리눅스 커널 (Linux Kernel)
+  - : 하드웨어의 운영과 관련된 저수준의 관리 기능이 들어 있음
+  - 메모리 관리
+  - 디바이스 드라이버
+  - 보안
+
+### 2. Android Development Environment
+
+![image](https://user-images.githubusercontent.com/50407047/85375025-a48ead80-b570-11ea-864f-da29ddad8d4b.png)
+
+### 4-1. Java 개요 및 변수
+
+#### Java의 개요
+
+##### 역사
+
+- 1991: 선마이크로시스템스(오라클에 인수되었음)에 제임스 고슬링이 **C언어**를 모델로 연구를 시작함
+- 1995: **JDK(Java Development Kit)** 1.0을 발표함
+- 1997: JDK1.1이 발표되면서 완전한 프로그래밍 언어의 모습을 갖춤
+
+##### 특징
+
+- 간결한 문구
+- 명료한 객체지향 언어
+- 이식성이 높고, 기계에 중립적인 성격
+- 분산 처리 지원
+- 멀티스레드(Multi-thread) 언어
+
+##### Java 프로그램 작성법
+
+1. 메모장에서 Java 코드를 작성한 후에 `.java`로 저장
+
+2. 컴파일하면 `.class` 파일이 생성
+
+3. 컴파일된 `.class` 파일을 실행
+
+   => 이클립스 환경에서 Java 개발
+
+[exercise] 변수 선언
+
+##### Java 기본 문법
+
+###### 1. 데이터형
+
+![image](https://user-images.githubusercontent.com/50407047/85376092-3814ae00-b572-11ea-8944-cbed2db49c3b.png)
+
+출처: geeksforgeeks.org
+
+###### 2. 조건문
+
+1. `if`
+
+- 조건이 True, False인지에 따라서 어떤 작업을 할 것인지를 결정
+
+```
+if(조건식){
+  //조건식이 true일 때 이 부분 실행
+}
+```
+
+```
+if(조건식){
+  //조건식이 true일 때 이 부분 실행
+} else {
+  //조건식이 false일 때 이 부분 실행
+}
+```
+
+2. `switch() ~ case`
+
+- 여러 가지 경우에 따라 어떤 작업을 할 것인지를 결정 (case A, case B, case C ...)
+
+```
+switch(값) {
+  case 값1:
+    //값1이면 이 부분 실행
+    break;
+  case 값2:
+    //값2이면 이 부분 실행
+    break;
+
+  default:
+    //아무것도 해당하지 않으면 이 부분 실행
+    break;
+}
+```
+
+```
+public class exam3 {
+
+  public static void main(String[] args) {
+
+    int count = 85;
+    if (count >= 90) {
+      System.out.println("if문: 합격 (장학생)");
+    } else if (count >= 60) {
+      System.out.prinln("if문: 합격");
+    } else {
+      System.out.println("if문: 불합격")
+    }
+
+    int jumsu = (count / 10) * 10;
+    switch (jumsu) {
+      case 100:
+      case 90:
+        System.out.println("switch문: 합격(장학생)");
+        break;
+      case 80:
+      case 70:
+      case 60:
+        System.out.println("switch문: 합격");
+        break;
+      default:
+        System.out.println("switch문: 불합격");
+    }
+  }
+}
+```
+
+###### 3. 배열
+
+여러 데이터를 한 변수에 저장하는 데 사용
+![image](https://user-images.githubusercontent.com/50407047/85401022-5390b080-b594-11ea-81f0-a4e191347cf2.png)
+
+```
+int one = new int[4];
+one[0] = 10;
+one[3] = 20;
+```
+
+[참고] 배열을 선언하면서 바로 값을 대입할 수도 있음
+
+```
+int three[] = {1,2,3};
+```
+
+이차원 배열
+![image](https://user-images.githubusercontent.com/50407047/85401302-c306a000-b594-11ea-945f-777b7d1882f9.png)
+
+```
+int two = new int[3][4]
+two[0][0] = 100;
+two[2][3] = 200;
+```
+
+###### 4. 반복문
+
+1. `for`
+
+```
+for(초기식; 조건식; 증감식) {
+  //이 부분을 반복 실행
+}
+```
+
+```
+for(변수형 변수: 배열명) {
+  //이 부분에서 변수를 사용
+}
+```
+
+배열의 값을 차례대로 가져와서 str에 넣어라
+
+2. `while`
+
+```
+while(조건식){
+  //조건식이 true인 동안 이 부분을 수행
+}
+```
+
+```java
+public class exam3 {
+  public static void main(String[] args) {
+    int one[] = new int[3];
+    for (int i = 0; i < one.length; i++){
+      one[i] = 10*i;
+    }
+
+    String two[] = {"하나", "둘", "셋"};
+    for (String str : two){
+      System.out.println(str);
+    }
+
+    while (j < one.length){
+      System.out.println(one[j]);
+      j++;
+    }
+  }
+}
+
+/*
+0
+10
+20
+하나둘셋
+0
+1
+2
+*/
+```
+
+###### 전역변수와 지역변수
+
+```java
+public class exam3 {
+  static int var = 100;
+  public static void main(String[] args){
+    int var = 0;
+    System.out.println(var);
+
+    int sum = addFunction(10, 20);
+    System.out.println(sum);
+  }
+
+  static int addFunction(int num1, int num2){
+    int hap;
+    hap = num1 + num2 + var;
+    return hap;
+  }
+}
+```
+
+###### 예외처리
+
+```java
+public class exam3 {
+  static int var = 100;
+  public static void main(String[] args){
+    int num1 = 100, num2 = 0;
+    try {
+      System.out.println(num1 / num2);
+    } catch (java.lang.ArithmeticException e){
+      System.out.println("계산에 문제가 있습니다");
+    }
+  }
+}
+```
+
+### 5. Java의 기본 문법2
+
+#### 5-1. 연산자
+
+![image](https://user-images.githubusercontent.com/50407047/85405278-209deb00-b59b-11ea-86f1-573d7ae3ca2d.png)
+
+#### 5-2. 클래스와 인스턴스
+
+클래스(class)는 변수(필드)와 메소드로 구성
+![image](https://user-images.githubusercontent.com/50407047/85405378-4cb96c00-b59b-11ea-8f60-00ab353f596f.png)
+
+##### 메소드 오버로딩(Overloading) / 정적필드, 정적 메소드, 상수 필드
+
+```java
+public class Car {
+  String color;
+  int speed;
+  static int carCount = 0;
+  final static int MAXSPEED = 200;
+  final static int MINSPEED = 0;
+
+  static int currentCarCount() {
+    return carCount;
+  }
+
+  Car(String color, int speed) {
+    this.color = color;
+    this.speed = speed;
+    carCount++;
+  }
+
+  Car(int speed){
+    this.speed = speed;
+  }
+
+  Car(){
+  }
+}
+```
+
+##### 생성자코드 + 정적 구성 요소
+
+```java
+public class exam3 {
+  public static void main(string[] args) {
+    Car myCar1 = new Car("빨강", 0);
+    Car myCar2 = new Car("파랑", 0);
+    Car myCar3 = new Car("초록", 0);
+
+    myCar1.upSpeed(50);
+    System.out.println("자동차1의 색상은 " + myCar1.getColor() + "이며, 속도는 " + myCar1.getSpeed() + " 입니다." );
+
+    myCar2.downSpeed(20);
+    System.out.println("자동차2의 색상은 " + myCar2.getColor() + "이며, 속도는 " + myCar2.getSpeed() + " 입니다.");
+
+    myCar3.upSpeed(300);
+    System.out.println("자동차3의 색상은 " + myCar3.getColor() + "이며, 속도는 " + myCar3.getSpeed() + " 입니다.");
+  }
+}
+```
+
+##### 클래스의 상속과 메소드 오버라이딩
+
+1. 클래스의 상속(Inheritance)
+   기존 클래스를 그대로 물려받으면서 필요한 필드나 메소드를 추가로 정의
+
+### 8-1. CompoundButton
+
+- public abstract class CompundButton extends `Button` implements Checkable
+- subclass of `Button` class
+- superclass of `CheckBox`, `RadioButton`, `Switch`, and `ToggleButton`
+
+- Hierarchy
 
 ```
   java.lang.Object
@@ -21,59 +358,44 @@
                     android.widget.ToggleButton
 ```
 
-#### 체크박스
+#### 1. CheckBox
 
-- 예제
-
-1. 체크박스 변수 선언
+- A checkbox is a specific type of two-states button that can be either checked or unchecked
 
 ```
+// 1. 체크박스 변수 선언
 CheckBox mycheck
-```
 
-2. 변수에 체크박스 위젯 대입
-
-```
+// 2. 변수에 체크박스 위젯 대입
 mycheck = (CheckBox) findViewById (R.id.android);
-```
 
-3. 체크박스가 변경될 때 동작하는 클래스 정의
-
-```
-mycheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-        //이 부분에 동작할 내용 코딩
-    }
+// 3. 체크박스가 변경될 때 동작하는 클래스 정의
+mycheck.setOnCheckedChangeListener(new CompoundButton.OncheckedChangeListener(){
+	public void onCheckedChanged(CompoundButton buttonview, boolean isChecked){
+		// 이 부분에 동작할 내용 코딩
+	}
 })
 ```
 
-#### 스위치와 토글버튼
+#### Switch / ToggleButton
 
-- 스위치와 토글버튼은 모양만 조금 다를 뿐 용도는 거의 동일
+\*`Switch`: a two-state toggle switch widget that can select between two options
 
-- 실습
+- `ToggleButton`: Displays checked/unchecked states as a button with a "light"indicator and by default accompanied with the text "ON" or "OFF"
+- The uses of`Switch` and `Toggle` are almost same except the shape.
 
-#### 라디오 버튼과 라디오 그룹
+#### RadioButton / RadioGroup
 
-- 라디오 버튼
+- `RadioButton` - contrary to a `CheckBox`, a radio button cannot be unchecked by the user once checked - use it when you have to choose one option among several options
+- `RadioGroup` - Radio buttons are normally used together in a RadioGroup. When several radio buttons live inside a radio group, checking one radio button uncheckes all the others. - Listing multiple radio will select duplicates for each click so radio buttons should be used with `RadioGroup`
 
-* 여러 개 중 하나만 선택해야 하는 경우에 사용함
+### 8-2. ImageView
 
-- 라디오 그룹
+#### Image View
 
-* 라디오 버튼만 여러 개 나열하면 클릭하는 것마다 모두 중복 선택되므로 라디오그룹과 함께 사용해야 함
-
-- 실습
-
-### 7주차 2강: 이미지 뷰와 사진보기 앱 화면구성
-
-#### 1. 이미지 뷰(Image View)
-
-그림을 출력하는 위젯으로 그림이 필요하거나 화면을 화려하게 구성할 때 사용
-
-- 이미지뷰에 보여줄 그림 파일은 프로젝트의 `[res]-[drawable]`에 있어야 함
-
-- 계층도
+- displays image resources, for example `Bitmap` or `Drawable` resources. \* `[res]-[drawable]`
+- ImageView is also commonly used to apply tint to an image and handle image scaling
+- Hierarchy
 
 ```
   java.lang.Object
@@ -82,185 +404,47 @@ mycheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             android.widget.ImageButton
 ```
 
-- 이미지 뷰 및 이미지 버튼의 XML 속성
+- XML attributes of `ImageView` and `ImageButton`
 
-* src: 이미지의 경로를 나타냄
-* `maxHeight`/`maxWidth`: 이미지의 크기 지정
-* lscaleType: 이미지의 확대/축소 방식 지정
+* `src`: path of iamge
+* `maxHeight`/`maxWidth`: Specify the size
+* scaleType: Controls how the image should be resized or moved to match the size of this ImageView
 
 - 실습4: 이미지 뷰와 이미지 버튼의 XML 속성
 
-#### 2. 애완동물 사진보기 앱 화면 구성
+### 8-3. [exercise] Pet Pictures App
 
-- 화면 및 디자인 편집
+#### XML
+
+[exercise - xml]("/exercise")
 
 1. 프로젝트의 [res] - [drawable]에 강아지, 고양이, 토끼 그림 파일을 미리 복사
-
 2. TextView, CheckBox, TextView, RadioGroup, RadioButton 각각 3개, Button, ImageView의 차례로 만듦 (실습5)
-
-   ```xml
-   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-       android:layout_width="fill_parent"
-       android:layout_height="fill_parent"
-       android:orientation="vertical"
-       android:padding="20dp" >
-
-       <TextView
-           android:id="@+id/Text1"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="선택을 시작하겠습니까?"
-           android:textSize="20dp" />
-
-       <CheckBox
-           android:id="@+id/ChkAgree"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="시작함" />
-
-       <TextView
-           android:id="@+id/Text2"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="좋아하는 애완동물은?"
-           android:textSize="20dp"
-           android:visibility="invisible" />
-
-       <RadioGroup
-           android:id="@+id/Rgroup1"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:visibility="invisible" >
-
-           <RadioButton
-               android:id="@+id/RdoDog"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="강아지" />
-
-           <RadioButton
-               android:id="@+id/RdoCat"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="고양이" />
-
-           <RadioButton
-               android:id="@+id/RdoRabbit"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="토끼" />
-       </RadioGroup>
-
-       <Button
-           android:id="@+id/BtnOK"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="선택 완료"
-           android:visibility="invisible" />
-
-       <ImageView
-           android:id="@+id/ImgPet"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:visibility="invisible" />
-
-   </LinearLayout>
-   ```
 
 - 레이아웃에 Padding을 적절히 지정
 - 맨 위의 TextView와 Checkbox 제외
 - 나머지 위젯은 Visibility 속성을 Invisible로 지정
 - 위젯의 Id는 위에서부터 Text1, ChkAgree, Text2, Rgroup1, RdoDog, RdoCat, RdoRabbit, BtnOk, ImgPet
 
-### 7주차 3강: 애완동물 사진보기 앱(Java)
+#### Java
 
-- Java 코드 작성 및 수정 (실습7)
+[exercise - java]
 
 1.  activity_main.xml의 9개 위젯에 대응할 위젯 변수 9개
 2.  각 위젯을 변수에 대입
 3.  [시작함] 체크박스를 체크/언체크할 때 동작하는 리스너를 onCreate() 내부에 정의 (실습8)
 4.  [선택 완료]를 클릭하면 동작하는 리스너를 onCreat() 메소드 내부에 정의(실습9)
 
-```java
-public class MainActivity extends AppCompatActivity {
+### 8-4. Layout
 
-    TextView text1, text2;
-    CheckBox chkAgree;
-    RadioGroup rGroup1;
-    RadioButton rdoDog, rdoCat, rdoRabbit;
-    Button btnOK;
-    ImageView imgPet;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        setTitle("애완동물 사진 보기");
-
-        // 위젯을 변수에 대입
-        text1 = (TextView) findViewById(R.id.Text1);
-        chkAgree = (CheckBox) findViewById(R.id.ChkAgree);
-
-        text2 = (TextView) findViewById(R.id.Text2);
-        rGroup1 = (RadioGroup) findViewById(R.id.Rgroup1);
-        rdoDog = (RadioButton) findViewById(R.id.RdoDog);
-        rdoCat = (RadioButton) findViewById(R.id.RdoCat);
-        rdoRabbit = (RadioButton) findViewById(R.id.RdoRabbit);
-
-        btnOK = (Button) findViewById(R.id.BtnOK);
-        imgPet = (ImageView) findViewById(R.id.ImgPet);
-
-        // 동의함 체크박스의 체크가 변경되면
-        chkAgree.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-                // 체크되면 모두 보이도록 설정
-                if (chkAgree.isChecked() == true) {
-                    text2.setVisibility(android.view.View.VISIBLE);
-                    rGroup1.setVisibility(android.view.View.VISIBLE);
-                    btnOK.setVisibility(android.view.View.VISIBLE);
-                    imgPet.setVisibility(android.view.View.VISIBLE);
-                } else {
-                    text2.setVisibility(android.view.View.INVISIBLE);
-                    rGroup1.setVisibility(android.view.View.INVISIBLE);
-                    btnOK.setVisibility(android.view.View.INVISIBLE);
-                    imgPet.setVisibility(android.view.View.INVISIBLE);
-                }
-            }
-        });
-        // 선택확인 버튼을 클릭하면
-        btnOK.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-
-                switch (rGroup1.getCheckedRadioButtonId()) {
-                    case R.id.RdoDog:
-                        imgPet.setImageResource(R.drawable.dog);
-                        break;
-                    case R.id.RdoCat:
-                        imgPet.setImageResource(R.drawable.cat);
-                        break;
-                    case R.id.RdoRabbit:
-                        imgPet.setImageResource(R.drawable.rabbit);
-                        break;
-                    default:
-                        Toast.makeText(getApplicationContext(), "동물 먼저 선택하세요", Toast.LENGTH_SHORT)
-                                .show();
-                }
-            }
-        });
-    }
-}
-```
-
-### 7주차 4강
-
-#### 레이아웃
-
-ViewGroup 클래스로부터 상속받으며, 내부에 무엇을 담는 용도로 사용
-
-- 레이아웃 중에서 가장 많이 사용되는 것은 `리니어레이아웃(LinearLayout)`임
-
-- 계층도
+- A layout defines the structure for a user interface in your app
+- All elements in the layout are built using using hiearchy of `View` and `ViewGroup`
+- A `View` usually draws something the user can see and interact with.
+- Whearea a `ViewGroup` is an invisible container that defines the layout structure for `View` and other `ViewGroup` objects
+- ![Illustration of a view hierarchym which defines UI layout](https://developer.android.com/images/viewgroup_2x.png)
+- `ViewGroup` 클래스로부터 상속받으며, 내부에 무엇을 담는 용도로 사용
+- `LinearLayout` is most used among layouts
+- Hierarchy
 
 ```
   java.lang.Object
@@ -273,7 +457,7 @@ ViewGroup 클래스로부터 상속받으며, 내부에 무엇을 담는 용도�
             android.widget.GridLayout
 ```
 
-1. 레이아웃에서 자주 사용되는 속성
+#### Layout Atrributes
 
 - `Orientation`: 레이아웃 안에 배치될 위젯의 **수직 또는 수평 방향** 설정
 - `Gravity`: 레이아웃 안에 배치할 위젯의 정렬 방향을 **좌측, 우측, 중앙**으로 설정
@@ -281,22 +465,25 @@ ViewGroup 클래스로부터 상속받으며, 내부에 무엇을 담는 용도�
 - `Layout_weight`: 레이아웃이 **전체 화면에서 차지하는 공간의 가중값** 설정- 여러 개의 레이아웃이 중복될 때 주로 사용
 - `Baselinealigned`: 레이아웃 안에 배치할 위젯을 **보기 좋게 정렬**
 
-2. 레이아웃 종류
+#### Layout Type
 
-- 리니어 레이아웃: 왼쪽 위부터 아래쪽 또는 오른쪽으로 차례로 배치
-- 렐러티브 레이아웃: 위젯 자신이 속한 레이아웃의 상하좌우의 위치를 지정하여 배치
-- 테이블 레이아웃: 위젯을 행과 열의 개수를 지정한 테이블 형태로 배열
-- 그리드 레이아웃: 테이블 레이아웃과 비슷하지만, 행 또는 열을 확장하여 다양하게 배치할 때 더 편리
-- 프레임 레이아웃: 위젯들을 위쪽에 일률적으로 겹쳐서 배치하여 중복해서 보이는 효과를 냄
+- `LinearLayout`: 왼쪽 위부터 아래쪽 또는 오른쪽으로 차례로 배치
+- `RalativeLayout`: 위젯 자신이 속한 레이아웃의 상하좌우의 위치를 지정하여 배치
+- `TableLayout`: 위젯을 행과 열의 개수를 지정한 테이블 형태로 배열
+- `GridLayout`: `TableLayout`과 비슷하지만, 행 또는 열을 확장하여 다양하게 배치할 때 더 편리
+- `FrameLayout`: 위젯들을 위쪽에 일률적으로 겹쳐서 배치하여 중복해서 보이는 효과를 냄
 
-3. 리니어 레이아웃 속성
+### 9-1. LinearLayout
 
-- Orientation 속성
+##### Attributes
 
-  - Vertival: 리니어 레이아웃 안에 포함될 위젯의 배치를 **수직 방향**으로 쌓겠다는 의미
-  - Horizontal: 리니어 레이아웃 안에 포함될 위젯의 배치를 **수평 방향**으로 쌓겠다는 의미
+1. `orientation`
 
-  ```
+- `Vertival`: 리니어 레이아웃 안에 포함될 위젯의 배치를 **수직 방향**으로 쌓겠다는 의미
+- `Horizontal`: 리니어 레이아웃 안에 포함될 위젯의 배치를 **수평 방향**으로 쌓겠다는 의미
+  Orientation 속성이 Vertical 값인 XML 코드 (실습10)
+
+```
   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmls:android="http://schemas.android.com/tools">
       android:layout_width="match_parent"
       android:layout_height="match_parent"
@@ -304,18 +491,14 @@ ViewGroup 클래스로부터 상속받으며, 내부에 무엇을 담는 용도�
 
       //여기에 위젯 배치
 
-  </linearLayout>
-  ```
+  </LinearLayout>
+```
 
-4. 리니어 레이아웃 형태
+2. `gravity`
+   레이아웃 안의 위젯을 어디에 배치할 것인지를 결정(실습12)
 
-- Orientation 속성
-  - Orientation 속성이 Vertical 값인 XML 코드 (실습10)
-  - Orientation 속성이 Horizontal 값인 XML 코드 (실습11)
-- Gravity 속성
-  - 레이아웃 안의 위젯을 어디에 배치할 것인지를 결정 (실습12)
-- Layout_gravity 속성
-  - 자신의 위치를 부모의 어디쯤에 위치시킬지를 결정
+3. `layout_gravity`
+   자신의 위치를 부모의 어디쯤에 위치시킬지를 결정
 
 ```XML
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -388,16 +571,15 @@ ViewGroup 클래스로부터 상속받으며, 내부에 무엇을 담는 용도�
 </LinearLayout>
 ```
 
-### 9주차 1강: 리니어레이아웃 형태와 속성
-
-1. Baselinealigned 속성
+4. `Baselinealigned` 속성
 
 - 크기가 다른 위젯들을 보기 좋게 정렬함
 - True와 False 값을 가질 수 있음
 
-2. 중복 리니어 레이아웃 형태
+\*
+중복 리니어 레이아웃 형태
 
-```
+```xml
 <LinearLayout>
 
     <LinearLayout>
@@ -419,108 +601,109 @@ ViewGroup 클래스로부터 상속받으며, 내부에 무엇을 담는 용도�
 </LinearLayout>
 ```
 
-- Layout_weight 속성 (실습1)
+\*
 
-- Layout_height를 Wrap_content로 변경 (실습2)
-  ![image](https://user-images.githubusercontent.com/50407047/84607187-e079a100-aee6-11ea-9c3a-9ff46366b3f9.png)
+5. `Layout_weight` (실습1)
 
-  ```xml
-  <?xml version="1.0" encoding="utf-8"?>
-  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical" >
+6. `Layout_height`를 `Wrap_content`로 변경 (실습2)
+   ![image](https://user-images.githubusercontent.com/50407047/84607187-e079a100-aee6-11ea-9c3a-9ff46366b3f9.png)
 
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:gravity="center"
-          android:orientation="vertical" >
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-          <Button
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="버튼1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" >
 
-          <Button
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="버튼2" />
-      </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="버튼1" />
 
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="#00FF00"
-          android:gravity="center"
-          android:orientation="horizontal" >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="버튼2" />
+    </LinearLayout>
 
-          <Button
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="버튼3" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00FF00"
+        android:gravity="center"
+        android:orientation="horizontal" >
 
-          <Button
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="버튼4" />
-      </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="버튼3" />
 
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="#0000FF"
-          android:gravity="center"
-          android:orientation="vertical" >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="버튼4" />
+    </LinearLayout>
 
-          <Button
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="버튼5" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0000FF"
+        android:gravity="center"
+        android:orientation="vertical" >
 
-          <Button
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="버튼6" />
-      </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="버튼5" />
 
-  </LinearLayout>
-  ```
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="버튼6" />
+    </LinearLayout>
 
-* Layout_weight를 1로 지정 (실습3)
+</LinearLayout>
+```
 
-  ![image](https://user-images.githubusercontent.com/50407047/84607262-423a0b00-aee7-11ea-88af-a21bca121e3a.png)
+7. Layout_weight를 1로 지정 (실습3)
 
-  ```xml
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_weight="1"
-          android:gravity="center"
-          android:orientation="vertical" >
+![image](https://user-images.githubusercontent.com/50407047/84607262-423a0b00-aee7-11ea-88af-a21bca121e3a.png)
 
-          <Button
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="버튼1" />
+```xml
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
 
-          <Button
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="버튼2" />
-      </LinearLayout>
-  ```
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="버튼1" />
 
-### 9주차 2강: 기타 레이아웃 - 렐러티브레이아웃
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="버튼2" />
+    </LinearLayout>
+```
 
-1. 렐러티브레이아웃
-   레이아웃 내부에 포함된 위젯을 상대적인 위치로 배치
+### 2. RelativeLayout
+
+- 레이아웃 내부에 포함된 위젯을 상대적인 위치로 배치
 
 - 렐러티브 레이아웃의 상하좌우에 배치
 
   ![image](https://user-images.githubusercontent.com/50407047/84607336-aa88ec80-aee7-11ea-8b8c-7f65775f6e5a.png)
 
-- 예제 (실습4)
+* 예제 (실습4)
 
   ![image](https://user-images.githubusercontent.com/50407047/84607359-cb514200-aee7-11ea-9c75-5c160fc64b8c.png)
 
@@ -566,7 +749,7 @@ ViewGroup 클래스로부터 상속받으며, 내부에 무엇을 담는 용도�
   </RelativeLayout>
   ```
 
-* 다른 위젯의 상대 위치에 배치
+- 다른 위젯의 상대 위치에 배치
 
   - 각 속성의 값은 다른 위젯의 Id를 지정
 
@@ -574,7 +757,7 @@ ViewGroup 클래스로부터 상속받으며, 내부에 무엇을 담는 용도�
 
     ![image](https://user-images.githubusercontent.com/50407047/84607427-25ea9e00-aee8-11ea-8305-bae317606db3.png)
 
-* 다른 위젯의 특정한 곳에 배치 (실습5)
+- 다른 위젯의 특정한 곳에 배치 (실습5)
 
   ![image](https://user-images.githubusercontent.com/50407047/84607452-4e729800-aee8-11ea-92b0-2222c22f3b58.png)
 
@@ -637,10 +820,7 @@ ViewGroup 클래스로부터 상속받으며, 내부에 무엇을 담는 용도�
   </RelativeLayout>
   ```
 
-
-  ```
-
-- 여러 위젯에서 상대 위치를 지정 (실습6)
+* 여러 위젯에서 상대 위치를 지정 (실습6)
 
   ![image](https://user-images.githubusercontent.com/50407047/84607487-8d085280-aee8-11ea-964c-8ae13ce86f3f.png)
 
@@ -679,28 +859,24 @@ ViewGroup 클래스로부터 상속받으며, 내부에 무엇을 담는 용도�
               android:layout_alignParentRight="true"
               android:layout_below"@+id/baseBtn1"
               android:text="2번"/>
-
-
   </RelativeLayout>
   ```
 
-### 9주차 3강: 기타 레이아웃 - 테이블 레이아웃
+### 9-3. TableLayout
 
-- 테이블레이아웃
+- 주로 위젯을 표 형태로 배치할 때 사용
 
-  - 주로 위젯을 표 형태로 배치할 때 사용
+  ![image](https://user-images.githubusercontent.com/50407047/84608733-c17f0d00-aeee-11ea-847b-e533bcfdb4a6.png)
 
-    ![image](https://user-images.githubusercontent.com/50407047/84608733-c17f0d00-aeee-11ea-847b-e533bcfdb4a6.png)
+- 테이블 레이아웃은 <TableRow>와 함께 사용
 
-  - 테이블 레이아웃은 <TableRow>와 함께 사용
+  - <TableRow>의 개수 => 행의 개수
 
-    - <TableRow>의 개수 => 행의 개수
+- 열의 개수는 <TableRow> 안에 포함된 위젯의 수로 결정
 
-  - 열의 개수는 <TableRow> 안에 포함된 위젯의 수로 결정
+  - 3행 4열의 테이블레이아웃
 
-    - 3행 4열의 테이블레이아웃
-
-- 속성
+#### Attributes
 
 - `layout_column`: 지정된 열에 현재 위젯을 표시하라는 의미
 
@@ -712,7 +888,7 @@ ViewGroup 클래스로부터 상속받으며, 내부에 무엇을 담는 용도�
 
   ![image](https://user-images.githubusercontent.com/50407047/84608762-e1163580-aeee-11ea-8639-003e9d6633ab.png)
 
-  ```xml
+```xml
   <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
       android:id="@+id/tableLayout1"
       android:layout_width="match_parent"
@@ -747,9 +923,9 @@ ViewGroup 클래스로부터 상속받으며, 내부에 무엇을 담는 용도�
 
       </TableRow>
   </TableLayout>
-  ```
+```
 
-### 9주차 4강: 기타 레이아웃: 그리드, 프레임 레이아웃
+### 9-4.GridLayout, FrameLayout
 
 - 그리드레이아웃(GridLayout)
 
@@ -776,7 +952,7 @@ ViewGroup 클래스로부터 상속받으며, 내부에 무엇을 담는 용도�
             android:rowCount="2">
 
     <Button
-			android:layout_column="0"
+    		android:layout_column="0"
             android:layout_gravity="fill_vertical"
             android:layout_row="0"
             android:layout_rowSpan="2"
@@ -832,19 +1008,21 @@ ViewGroup 클래스로부터 상속받으며, 내부에 무엇을 담는 용도�
 
 - 계층도
 
-```
-java.lang.Object
+  ```
+  java.lang.Object
     android.view.View
         android.widget.AnalogClock
         android.widget.TextView
             android.widget.DigitalClock
-```
+  ```
+
+````
 
 - 예제
 
 ![image](https://user-images.githubusercontent.com/50407047/84739792-3b92bd00-afe7-11ea-9cb9-9918942fcd2a.png)
 
-```xml
+​```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
@@ -860,7 +1038,7 @@ java.lang.Object
                   android:gravity="center"/>
 
 </LinearLayout>
-```
+````
 
 2. 크로노미터 (Chronometer)
 
@@ -1168,8 +1346,6 @@ java.lang.Object
        android.widget.WebView
   ```
 
-```
-
 2. 간단한 웹 브라우저 만들기
 
 - AndroidManifest.xml (매니패스트): 프로젝트의 전반적인 환경을 설정하는 파일
@@ -1191,10 +1367,9 @@ java.lang.Object
 - 2. 메뉴 파일 등록: Java 코딩: `onCreateOptionMenu()` 메소드 오버라이딩
 - 3. 메뉴 선택 시 작동할 내용 코딩: Java 코딩: `onOptionsItemSelected()` 메소드 오버라이딩
 
-- 메뉴 XML 파일 형식
+메뉴 XML 파일 형식
 
 ```
-
 <menu>
   <item
     android:id="@+id/항목1아이디"
@@ -1205,16 +1380,15 @@ java.lang.Object
 </menu>
 ```
 
-- `onCreateOptionMenu()` 메소드 기본 형식
+`onCreateOptionMenu()` 메소드 기본 형식
 
-```
+```java
 public boolean onCreateOptionsMenu(Menu menu) {
   super.onCreateOptionsMenu(menu);
   MenuInflater mInflater = getMenuINflater();
   mInflater.inflate(R.menu.메뉴XML아이디, menu);
   return true;
 }
-
 ```
 
 ### 11주차 4강: 메뉴를 통한 배경색 변경 앱 만들기
@@ -1306,13 +1480,3 @@ public boolean onCreateOptionsMenu(Menu menu) {
 - 사용자 이름과 이메일 입력 구성
   - 대화상자의 <확인>을 클릭하면 대화상자에서 입력한 **사용자 이름과 이메일**이 **메인 화면**(activity_main.xml)의 **텍스트뷰**에 쓰이도록 코딩
   - 참고) <취소>를 클릭했을 때 toast1.xml이 토스트 메시지로 나오도록 설정
-
-### 13주차 2강: 내장 메모리 파일 처리
-
-```
-
-
-###
-```
-
-```

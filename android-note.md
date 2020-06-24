@@ -14,7 +14,7 @@
 
 #### 특징
 
-![image](https://user-images.githubusercontent.com/50407047/85373569-6c866b00-b56e-11ea-9d1f-3be2e5dc576e.png){: .center}
+![image](https://user-images.githubusercontent.com/50407047/85373569-6c866b00-b56e-11ea-9d1f-3be2e5dc576e.png){align="center"}
 
 #### 안드로이드 운영체제 및 애플리케이션
 

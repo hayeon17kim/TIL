@@ -14,7 +14,7 @@
 
 #### 특징
 
-![image](https://user-images.githubusercontent.com/50407047/85373569-6c866b00-b56e-11ea-9d1f-3be2e5dc576e.png){: align="center"}
+![image](https://user-images.githubusercontent.com/50407047/85373569-6c866b00-b56e-11ea-9d1f-3be2e5dc576e.png)
 
 #### 안드로이드 운영체제 및 애플리케이션
 
@@ -41,7 +41,7 @@
 
 ### 2. Android Development Environment
 
-![image](https://user-images.githubusercontent.com/50407047/85375025-a48ead80-b570-11ea-864f-da29ddad8d4b.png){: .center}
+![image](https://user-images.githubusercontent.com/50407047/85375025-a48ead80-b570-11ea-864f-da29ddad8d4b.png)
 
 ### 4-1. Java 개요 및 변수
 
@@ -77,7 +77,7 @@
 
 ###### 1. 데이터형
 
-![image](https://user-images.githubusercontent.com/50407047/85376092-3814ae00-b572-11ea-8944-cbed2db49c3b.png){: .center}
+![image](https://user-images.githubusercontent.com/50407047/85376092-3814ae00-b572-11ea-8944-cbed2db49c3b.png)
 
 출처: geeksforgeeks.org
 
@@ -155,7 +155,8 @@ public class exam3 {
 ###### 3. 배열
 
 여러 데이터를 한 변수에 저장하는 데 사용
-![image](https://user-images.githubusercontent.com/50407047/85401022-5390b080-b594-11ea-81f0-a4e191347cf2.png){: .center}
+
+![image](https://user-images.githubusercontent.com/50407047/85401022-5390b080-b594-11ea-81f0-a4e191347cf2.png)
 
 ```
 int one = new int[4];
@@ -170,7 +171,8 @@ int three[] = {1,2,3};
 ```
 
 이차원 배열
-![image](https://user-images.githubusercontent.com/50407047/85401302-c306a000-b594-11ea-945f-777b7d1882f9.png){: .center}
+
+![image](https://user-images.githubusercontent.com/50407047/85401302-c306a000-b594-11ea-945f-777b7d1882f9.png)
 
 ```
 int two = new int[3][4]
@@ -281,7 +283,8 @@ public class exam3 {
 #### 5-2. 클래스와 인스턴스
 
 클래스(class)는 변수(필드)와 메소드로 구성
-![image](https://user-images.githubusercontent.com/50407047/85405378-4cb96c00-b59b-11ea-8f60-00ab353f596f.png){: .center}
+
+![image](https://user-images.githubusercontent.com/50407047/85405378-4cb96c00-b59b-11ea-8f60-00ab353f596f.png)
 
 ##### 메소드 오버로딩(Overloading) / 정적필드, 정적 메소드, 상수 필드
 
@@ -673,7 +676,7 @@ mycheck.setOnCheckedChangeListener(new CompoundButton.OncheckedChangeListener(){
 
 7. Layout_weight를 1로 지정 (실습3)
 
-![image](https://user-images.githubusercontent.com/50407047/84607262-423a0b00-aee7-11ea-88af-a21bca121e3a.png){: .center}
+![image](https://user-images.githubusercontent.com/50407047/84607262-423a0b00-aee7-11ea-88af-a21bca121e3a.png)
 
 ```xml
     <LinearLayout
@@ -701,11 +704,11 @@ mycheck.setOnCheckedChangeListener(new CompoundButton.OncheckedChangeListener(){
 
 - 렐러티브 레이아웃의 상하좌우에 배치
 
-  ![image](https://user-images.githubusercontent.com/50407047/84607336-aa88ec80-aee7-11ea-8b8c-7f65775f6e5a.png){: .center}
+  ![image](https://user-images.githubusercontent.com/50407047/84607336-aa88ec80-aee7-11ea-8b8c-7f65775f6e5a.png)
 
 * 예제 (실습4)
 
-  ![image](https://user-images.githubusercontent.com/50407047/84607359-cb514200-aee7-11ea-9c75-5c160fc64b8c.png){: .center}
+  ![image](https://user-images.githubusercontent.com/50407047/84607359-cb514200-aee7-11ea-9c75-5c160fc64b8c.png)
 
   ```xml
   <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -755,11 +758,11 @@ mycheck.setOnCheckedChangeListener(new CompoundButton.OncheckedChangeListener(){
 
   - "@+id/기준 위젯의 아이디"와 같은 형식으로 사용
 
-    ![image](https://user-images.githubusercontent.com/50407047/84607427-25ea9e00-aee8-11ea-8305-bae317606db3.png){: .center}
+    ![image](https://user-images.githubusercontent.com/50407047/84607427-25ea9e00-aee8-11ea-8305-bae317606db3.png)
 
 - 다른 위젯의 특정한 곳에 배치 (실습5)
 
-  ![image](https://user-images.githubusercontent.com/50407047/84607452-4e729800-aee8-11ea-92b0-2222c22f3b58.png){: .center}
+  ![image](https://user-images.githubusercontent.com/50407047/84607452-4e729800-aee8-11ea-92b0-2222c22f3b58.png)
 
   ```xml
   <RelativeLayout xmls:android="http://schemas.android.com/apk/res/android"
@@ -822,7 +825,7 @@ mycheck.setOnCheckedChangeListener(new CompoundButton.OncheckedChangeListener(){
 
 * 여러 위젯에서 상대 위치를 지정 (실습6)
 
-  ![image](https://user-images.githubusercontent.com/50407047/84607487-8d085280-aee8-11ea-964c-8ae13ce86f3f.png){: .center}
+  ![image](https://user-images.githubusercontent.com/50407047/84607487-8d085280-aee8-11ea-964c-8ae13ce86f3f.png)
 
   ```xml
   <?xml version="1.0" encoding="utf-8"?>
@@ -866,7 +869,7 @@ mycheck.setOnCheckedChangeListener(new CompoundButton.OncheckedChangeListener(){
 
 - 주로 위젯을 표 형태로 배치할 때 사용
 
-  ![image](https://user-images.githubusercontent.com/50407047/84608733-c17f0d00-aeee-11ea-847b-e533bcfdb4a6.png){: .center}
+  ![image](https://user-images.githubusercontent.com/50407047/84608733-c17f0d00-aeee-11ea-847b-e533bcfdb4a6.png)
 
 - 테이블 레이아웃은 <TableRow>와 함께 사용
 
@@ -886,7 +889,7 @@ mycheck.setOnCheckedChangeListener(new CompoundButton.OncheckedChangeListener(){
 
 - 예제
 
-  ![image](https://user-images.githubusercontent.com/50407047/84608762-e1163580-aeee-11ea-8639-003e9d6633ab.png){: .center}
+  ![image](https://user-images.githubusercontent.com/50407047/84608762-e1163580-aeee-11ea-8639-003e9d6633ab.png)
 
 ```xml
   <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -942,7 +945,7 @@ mycheck.setOnCheckedChangeListener(new CompoundButton.OncheckedChangeListener(){
       - 주로 `Fill`, `Fill_vertical`, `Fill_horizontal` 등으로 지정
       - 행 또는 열 확장 시, 위젯을 확장된 셀에 꽉 채우는 효과
 
-![image](https://user-images.githubusercontent.com/50407047/84612180-c5189100-aefa-11ea-8d0f-cdba2383ff1b.png){: .center}
+![image](https://user-images.githubusercontent.com/50407047/84612180-c5189100-aefa-11ea-8d0f-cdba2383ff1b.png)
 
 ```xml
 <GridLayout
@@ -973,7 +976,7 @@ mycheck.setOnCheckedChangeListener(new CompoundButton.OncheckedChangeListener(){
   - `foreground`: 전경 이미지 지정
   - `foregroundGravity`: 전경 이미지의 위치 지정
 
-![image](https://user-images.githubusercontent.com/50407047/84739448-97a91180-afe6-11ea-8208-af51a60b3265.png){: .center}
+![image](https://user-images.githubusercontent.com/50407047/84739448-97a91180-afe6-11ea-8208-af51a60b3265.png)
 
 ```xml
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -1054,7 +1057,7 @@ java.lang.Object
 
 예제
 
-![image](https://user-images.githubusercontent.com/50407047/84740424-531e7580-afe8-11ea-9135-127a36b338ea.png){: .center}
+![image](https://user-images.githubusercontent.com/50407047/84740424-531e7580-afe8-11ea-9135-127a36b338ea.png)
 
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -1099,7 +1102,7 @@ java.lang.Object
 
 예제
 
-![image](https://user-images.githubusercontent.com/50407047/84740788-fe2f2f00-afe8-11ea-88c0-d9bfcb3bbb3c.png){: .center}
+![image](https://user-images.githubusercontent.com/50407047/84740788-fe2f2f00-afe8-11ea-88c0-d9bfcb3bbb3c.png)
 
 ```xml
 <LinearLayout
@@ -1126,7 +1129,7 @@ java.lang.Object
 - 날짜/시간 예약 앱 만들기
   라디오버튼 클릭 시 캘린더뷰와 타임피커 중 하나씩만 보이게 이벤트 리스너 작성
 
-![image](https://user-images.githubusercontent.com/50407047/84742813-0046bd00-afec-11ea-9e0b-1510b6d74f6d.png){: .center}
+![image](https://user-images.githubusercontent.com/50407047/84742813-0046bd00-afec-11ea-9e0b-1510b6d74f6d.png)
 
 ```xml
 <LinearLayout

@@ -11,5 +11,5 @@ Today I Learned 365
 - [Java Basic Notes](https://github.com/hayeon17kim/TIL/tree/master/bitcamp-java-basic/README.md)
     - 비트캠프 "자바 기초 특강"을 듣고 작성한 강의노트입니다. (2020.07)
     
-- [Java Notes](https://github.com/hayeon17kim/TIL/tree/master/bitcamp-java-basic/README.md)
+- [Java Notes](https://github.com/hayeon17kim/TIL/tree/master/bitcamp-java/README.md)
     - 비트캠프 171기 자바 과정을 듣고 작성한 강의노트입니다. (2020.07 - 2020.12)

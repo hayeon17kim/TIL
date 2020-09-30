@@ -12,20 +12,20 @@ Today I Learned 365
     + 비트캠프 "자바 기초 특강"을 듣고 작성한 강의노트입니다. (2020.07)
 + [Java Notes](https://github.com/hayeon17kim/TIL/tree/master/bitcamp-java/README.md)
     + 엄진영 강사님의 비트캠프 171기 자바 과정을 듣고 작성한 강의노트입니다. (2020.07 - 2020.12)
-+ Discrete Mathematics
++ [Discrete Mathematics](https://github.com/hayeon17kim/TIL/tree/master/discrete-mathematics)
     + 신흥철 교수님의 이산수학 강의를 듣고 작성한 강의노트입니다. (2020-09 - 진행중)
-+ JavaScript Basics
++ [JavaScript Basics](https://github.com/hayeon17kim/TIL/tree/master/javascript-basic)
     + 생활코딩의 자바스크립트 강의를 듣고 작성한 강의노트입니다.
 
 ## 독서노트 📚
 
-- Standard Java
+- [Standard Java]((https://github.com/hayeon17kim/TIL/tree/master/standard-java)
     - 남궁성의 [자바의 정석](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=76083001)을 읽고 정리한 공부노트입니다.
-- This is Java
+- [This is Java](https://github.com/hayeon17kim/TIL/tree/master/this-is-java)
     - 신용권의 [이것이 자바다](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=50563128)를 읽고 정리한 공부노트입니다. 
-- Modern JavaScript Tutorial
+- [Modern JavaScript Tutorial](https://github.com/hayeon17kim/TIL/tree/master/modern-javascript)
     - [모던 자바스크립트 튜토리얼](https://ko.javascript.info/)을 읽고 정리한 공부노트입니다.
-- HTTP
+- [HTTP](https://github.com/hayeon17kim/TIL/tree/master/http)
     - 모질라 재단의 [HTTP 도큐먼트](https://developer.mozilla.org/ko/docs/Web/HTTP)를 읽고 정리한 공부노트입니다.
 - Think Data Structures
     - 앨런 B. 다우니의 [Think Data Structres](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=148016214)을 읽고 정리한 공부노트입니다.

@@ -29,6 +29,6 @@ Today I Learned 365
     - 모질라 재단의 [HTTP 도큐먼트](https://developer.mozilla.org/ko/docs/Web/HTTP)를 읽고 정리한 공부노트입니다.
 - Think Data Structures
     - 앨런 B. 다우니의 [Think Data Structres](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=148016214)을 읽고 정리한 공부노트입니다.
-- [Do it Algorithm]((https://github.com/hayeon17kim/TIL/tree/master/do-it-algorithm)
+- [Do it Algorithm](https://github.com/hayeon17kim/TIL/tree/master/do-it-algorithm)
     - [Do it! 자료구조와 함께 배우는 알고리즘 입문](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=143301556)을 읽고 정리한 공부노트입니다.
     

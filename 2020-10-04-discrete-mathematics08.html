@@ -1,0 +1,558 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>&quot;이산수학 #8강: 수의 표현&quot;</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+
+
+
+/*!
+Misty Light
+Brought to you with ❤️ by E-Tiger Studio, 2017-2020
+https://github.com/etigerstudio/typora-misty-theme
+ */
+:root {
+  --control-text-color: #777;
+  --side-bar-bg-color: #f6f8fa
+}
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: subpixel-antialiased
+}
+body {
+  font-family: "SF UI Text",-apple-system,-apple-system-body,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  color: #24292e;
+  line-height: 1.5
+}
+#write {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 20px 30px 100px
+}
+#write > ol:first-child,
+#write > ul:first-child {
+  margin-top: 30px
+}
+body > :first-child {
+  margin-top: 0!important
+}
+body > :last-child {
+  margin-bottom: 0!important
+}
+a {
+  color: #4183c4
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  position: relative;
+  margin-top: 1.8rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  cursor: text;
+  color: #142331
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+  text-decoration: none
+}
+h1 code,
+h1 tt,
+h2 code,
+h2 tt,
+h3 code,
+h3 tt,
+h4 code,
+h4 tt,
+h5 code,
+h5 tt,
+h6 code,
+h6 tt {
+  font-size: inherit
+}
+h1 {
+  text-align: center;
+  padding-bottom: .3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  margin: 1em auto 1.2em
+}
+h1:after {
+  border-bottom: 2px dashed #afec9e;
+  content: '';
+  width: 100px;
+  display: block;
+  margin: .2em auto 0;
+  height: 2px
+}
+h2 {
+  font-size: 1.75em;
+  padding-left: 9px;
+  line-height: 1.4;
+  border-left: 6px solid #cce5ff
+}
+h3 {
+  font-size: 1.5em;
+  line-height: 1.43
+}
+h3:before {
+  border-radius: 50%;
+  background-color: #9ed0ff;
+  content: '';
+  width: 6px;
+  display: inline-block;
+  height: 6px;
+  vertical-align: middle;
+  margin-bottom: .18em;
+  margin-right: 8px
+}
+#write > h3.md-focus:before,
+#write > h4.md-focus:before {
+  background-color: transparent;
+  width: auto;
+  height: auto
+}
+h4 {
+  font-size: 1.25em
+}
+h4:before {
+  background-color: #9ed0ff;
+  content: '';
+  width: 6px;
+  display: inline-block;
+  height: 2px;
+  vertical-align: middle;
+  margin-bottom: .18em;
+  margin-right: 8px
+}
+h5 {
+  font-size: 1em
+}
+h6 {
+  font-size: 1em;
+  color: #777
+}
+blockquote,
+dl,
+ol,
+p,
+table,
+ul {
+  margin: .8em 0
+}
+li > ol,
+li > ul {
+  margin: 0
+}
+hr {
+  height: .25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #e1e4e8;
+  border: 0
+}
+a:first-child h1,
+a:first-child h2,
+a:first-child h3,
+a:first-child h4,
+a:first-child h5,
+a:first-child h6,
+body>h1:first-child,
+body>h1:first-child+h2,
+body>h2:first-child,
+body>h3:first-child,
+body>h4:first-child,
+body>h5:first-child,
+body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0
+}
+h1 p,
+h2 p,
+h3 p,
+h4 p,
+h5 p,
+h6 p {
+  margin-top: 0
+}
+li p.first {
+  display: inline-block
+}
+ol,
+ul {
+  padding-left: 30px
+}
+ol:first-child,
+ul:first-child {
+  margin-top: 0
+}
+ol:last-child,
+ul:last-child {
+  margin-bottom: 0
+}
+blockquote {
+  border-left: 4px dotted #e5e8e8;
+  padding: 0 12px;
+  color: #444;
+  font-size: .9em
+}
+blockquote blockquote {
+  padding-right: 0
+}
+table {
+  padding: 0;
+  word-break: initial
+}
+table tr {
+  border-top: 1px solid #dadfe6;
+  margin: 0;
+  padding: 0
+}
+table.md-table tr:nth-child(2n) {
+  background-color: #fafbfc
+}
+table tr td,
+table tr th {
+  border: 1px solid #dadfe6;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px
+}
+table tr td:first-child,
+table tr th:first-child {
+  margin-top: 0
+}
+table tr td:last-child,
+table tr th:last-child {
+  margin-bottom: 0
+}
+.CodeMirror-gutters {
+  border-right: 1px solid #ddd
+}
+.md-fences,
+code,
+tt {
+  font-size: 90%;
+  border-radius: 3px;
+  font-family: "SF Mono",Consolas,"Liberation Mono",Menlo,Courier,monospace
+}
+code,
+tt {
+  margin: 0 2px;
+  padding: 2px 4px;
+  background-color: #e2f0ff
+}
+.md-fences {
+  background-color: #f6f8fa;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  padding: 12px 1em
+}
+.md-task-list-item > input {
+  margin-left: -1.45em;
+  margin-top: calc(1em - 10px)
+}
+#write pre.md-meta-block {
+  padding: 1rem;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7faf6;
+  border: 0;
+  border-radius: 3px;
+  color: #777;
+  margin-top: 0!important
+}
+.mathjax-block > .code-tooltip {
+  bottom: .375rem
+}
+#write > h3.md-focus:before {
+  left: -1.5625rem;
+  top: .375rem
+}
+#write>h4.md-focus:before,
+#write>h5.md-focus:before,
+#write>h6.md-focus:before {
+  left: -1.5625rem;
+  top: .285714286rem
+}
+.md-image > .md-meta {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-family: "SF Mono",Consolas,"Liberation Mono",Courier,monospace;
+  padding: 2px 4px 0;
+  font-size: .9em;
+  color: inherit
+}
+.md-tag {
+  color: inherit
+}
+.md-toc {
+  margin-top: 20px;
+  padding-bottom: 20px
+}
+.sidebar-tabs {
+  border-bottom: none
+}
+#typora-quick-open {
+  border: 1px solid #ddd;
+  background-color: #f8f8f8
+}
+#typora-quick-open-item {
+  background-color: #fafafa;
+  border-color: #fefefe #e5e5e5 #e5e5e5 #eee;
+  border-style: solid;
+  border-width: 1px
+}
+.typora-quick-open-item {
+  padding-top: 3px
+}
+.typora-quick-open-list {
+  margin-top: 4px
+}
+.typora-quick-open-item-path {
+  margin-top: -2px
+}
+#md-notification:before {
+  top: 10px
+}
+.on-focus-mode blockquote {
+  border-left-color: rgba(85,85,85,.12)
+}
+.context-menu,
+.megamenu-content,
+footer,
+header {
+  font-family: "SF UI Text",-apple-system,-apple-system-body,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
+}
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+  visibility: visible
+}
+.mac-seamless-mode #typora-sidebar {
+  background-color: var(--side-bar-bg-color)
+}
+.md-lang {
+  color: #b4654d
+}
+.pin-outline #outline-content .outline-active strong,
+.pin-outline .outline-active {
+  color: #232323;
+  font-weight: 600
+}
+.outline-label {
+  color: #646464;
+  font-weight: 400
+}
+.file-list-item-summary {
+  font-family: "SF UI Text",-apple-system,-apple-system-body,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
+}
+@media print {
+  body {
+    font-weight: 400
+  }
+  b,
+  strong {
+    font-weight: 600
+  }
+  pre,
+  table {
+    page-break-inside: avoid
+  }
+  pre {
+    word-wrap: break-word
+  }
+}
+body {
+  font-weight: 400;
+  -webkit-font-smoothing: unset
+}
+b,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-weight: 600
+}
+h1,
+table tr th {
+  font-weight: 400
+}
+.file-list-item-file-name {
+  font-weight: 500
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><p><span>신흥철 교수님의 이산수학 8강을 듣고 정리하였습니다.</span></p><h2><a name="수의-종류" class="md-header-anchor"></a><span>수의 종류</span></h2><p><img src="http://www.ktword.co.kr/img_data/4422_2.JPG" referrerpolicy="no-referrer" alt="img"></p><h3><a name="자연수-n" class="md-header-anchor"></a><span>자연수 N</span></h3><p><span>기수(base)를 b로 하는 수체계로, 양의 정수 n</span><sub><span>b</span></sub><span>
+n, b∈N이고, b&gt;1, 0≤a</span><sub><span>i</span></sub><span>&lt;b일 때 n=a</span><sub><span>k</span></sub><span>b</span><sup><span>k</span></sup><span>+a</span><sub><span>k-1</span></sub><span>b</span><sup><span>k-1</span></sup><span>+…+a</span><sub><span>1</span></sub><span>b</span><sup><span>1</span></sup><span>+a</span><sub><span>0</span></sub><span>b</span><sup><span>0</span></sup><span> (k: 자리수)</span></p><blockquote><p><span>각각의 자릿수는 0이상 기수 미만: 10진수라면 각각의 자릿수는 0 이상 10미만이다.</span></p></blockquote><p><strong><span>예제 4-1</span></strong><span>. 589</span><sub><span>10</span></sub><span>을 기수와 자리수로 표현하시오.</span></p><p><span>589</span><sub><span>10</span></sub><span>=5×10</span><sup><span>2</span></sup><span>+8×10</span><sup><span>1</span></sup><span>+9×10</span><sup><span>0</span></sup></p><h3><a name="정수" class="md-header-anchor"></a><span>정수</span></h3><p><span>양의 정수, 0, 음의 정수로 구성된 수 체계</span></p><h3><a name="유리수-q" class="md-header-anchor"></a><span>유리수 Q</span></h3><p><span> a, b∈Z(정수), a≠0일 때 b/a인 수 체계</span></p><ul><li><span>정수부.실수부</span></li><li><span>하한항(lowest): 분모와 분자 사이에 1 이외의 공약수가 존재하지 않는 유리수 (분모와 분자가 서로소이다)</span></li><li><span>실수부(소수점 이하) 숫자들이 </span><strong><span>유한</span></strong><span>하거나 </span><strong><span>일정하게 반복</span></strong><span>됨 (예: ½=0.5, ⅓=0.333…)</span></li></ul><h3><a name="무리수-i" class="md-header-anchor"></a><span>무리수 I</span></h3><p><span>a, b∈Z, a≠0일 때 b/a로 표현할 수 없는 수 체계</span></p><ul><li><span>실수부(소수점 이하) 숫자들이 </span><strong><span>무작위로</span></strong><span> 나열됨</span></li><li><span>예: 루트2</span></li></ul><h3><a name="실수-r-n∪z∪q∪i" class="md-header-anchor"></a><span>실수 R (=N∪Z∪Q∪I)</span></h3><p><span>자연수, 정수, 유리수, 무리수를 포함하는 수 체계</span></p><p><span>r∈R, b∈N이고, b&gt;1, 0&lt;a_i&lt;b일 때</span></p><p><span>r =a</span><sub><span>k</span></sub><span>b</span><sup><span>k</span></sup><span>+a</span><sub><span>k-1</span></sub><span>b</span><sup><span>k-1</span></sup><span>+…+a</span><sub><span>1</span></sub><span>b</span><sup><span>1</span></sup><span>+a</span><sub><span>0</span></sub><span>b</span><sup><span>0</span></sup><span> +a</span><sub><span>-1</span></sub><span>b</span><sup><span>-1</span></sup><span>+a</span><sub><span>-2</span></sub><span>b</span><sup><span>-2</span></sup><span>+… (k: 자리수)</span></p><p>&nbsp;</p><p><strong><span>예제4-5.</span></strong><span> 345.734</span><sub><span>10</span></sub><span>을 기수와 자리수로 표현?</span></p><p><span>345.73410=3×10</span><sup><span>2</span></sup><span>+4×10</span><sup><span>1</span></sup><span>+5×10</span><sup><span>0</span></sup><span> +7×10</span><sup><span>-1</span></sup><span>+3×10</span><sup><span>-2</span></sup><span>+4×10</span><sup><span>-3</span></sup></p><h3><a name="복소수-c" class="md-header-anchor"></a><span>복소수 C</span></h3><p><span>x</span><sup><span>2</span></sup><span> = -1 를 포함하는 수 체계</span></p><p><span>c=a+bi(a: c의 실수부, b: c의 허수부)로 표현하되, 연산은 아래와 같음</span></p><ul><li><span>(a+bi)+(c+di)=(a+c)+(b+d)i </span></li><li><span>(a+bi)·(c+di) = (ac+adi)+(bci+bdi</span><sup><span>2</span></sup><span>) = (ac-bd)+(ad+bc)i</span></li></ul><p>&nbsp;</p><p><span>예제 4-6. 복소수 3+6i와 12i에 대해 합과 곱은?</span></p><ul><li><span>(합) (3+6i)+12i=3+18i</span></li><li><span>(곱) (3+6i)×12i=36i+72i2= (-72)+36i</span></li></ul><h2><a name="수의-연산" class="md-header-anchor"></a><span>수의 연산</span></h2><h3><a name="수의-닫힘-성질-closure" class="md-header-anchor"></a><span>수의 닫힘 성질 (closure)</span></h3><p><span>어떤 수 체계에 속한 원소들에 대해 연산한 결과가 수 체계에 속하게 되면 연산에 대해 닫혀있다고 한다.</span></p><figure><table><thead><tr><th>&nbsp;</th><th><span>덧셈</span></th><th><span>뺄셈</span></th><th><span>곱셈</span></th><th><span>나눗셈</span></th></tr></thead><tbody><tr><td><span>자연수(N)</span></td><td><span>○</span></td><td><span>×</span></td><td><span>○</span></td><td><span>×</span></td></tr><tr><td><span>정수(Z)</span></td><td><span>○</span></td><td><span>○</span></td><td><span>○</span></td><td><span>×</span></td></tr><tr><td><span>유리수(Q)</span></td><td><span>○</span></td><td><span>○</span></td><td><span>○</span></td><td>&nbsp;</td></tr><tr><td><span>무리수(I)</span></td><td><span>×</span></td><td><span>×</span></td><td><span>×</span></td><td><span>×</span></td></tr><tr><td><span>실수(R)</span></td><td><span>○</span></td><td><span>○</span></td><td><span>○</span></td><td><span>○</span></td></tr><tr><td><span>복소수(C)</span></td><td><span>○</span></td><td><span>○</span></td><td><span>○</span></td><td><span>○</span></td></tr></tbody></table></figure><p>&nbsp;</p><h3><a name="수의-합과-곱에-대한-특징" class="md-header-anchor"></a><span>수의 합과 곱에 대한 특징</span></h3><ul><li><span>교환법칙: x+y=y+x, xy=yx</span></li><li><span>결합법칙: (x+y)+z=x+(y+z), (xy)z=x(yz)</span></li><li><span>분배법칙: x(y+z)=xy+xz</span></li><li><span>합에 대한 항등원: 0</span></li><li><span>곱에 대한 항등원: 1</span></li><li><span>합에 대한 역: -a</span></li><li><span>곱에 대한 역: 1/a</span></li></ul><p>&nbsp;</p><p><strong><span>예제4-7.</span></strong><span> 9의 합과 곱에 대한 역을 구하시오.</span></p><ul><li><span>(합)9+a=0 ∴a=-9</span></li><li><span>(곱) 9×a=1 ∴a=1/9</span></li></ul><p>&nbsp;</p><h3><a name="합의-표시-∑xi" class="md-header-anchor"></a><span>합의 표시 ∑xi</span></h3><ul><li><span>일정한 규칙으로 나열된 값의 합 (i: 합의 색인)</span></li><li><span>x</span><sub><span>1</span></sub><span>+x</span><sub><span>2</span></sub><span>+x</span><sub><span>3</span></sub><span>+…+x</span><sub><span>i</span></sub><span>+…+x</span><sub><span>n-1</span></sub><span>+x</span><sub><span>n</span></sub></li></ul><p>&nbsp;</p><h3><a name="곱의-표시-∏xi" class="md-header-anchor"></a><span>곱의 표시 ∏xi</span></h3><ul><li><span>일정한 규칙으로 나열된 값의 곱(i: 곱의 색인)</span></li><li><span>x</span><sub><span>1</span></sub><span>× x</span><sub><span>2</span></sub><span>×x</span><sub><span>3</span></sub><span>×…× x</span><sub><span>i</span></sub><span>×…× x</span><sub><span>n-1</span></sub><span>×x</span><sub><span>n</span></sub></li></ul><p>&nbsp;</p><h3><a name="나누기-연산-dn" class="md-header-anchor"></a><span>나누기 연산 d|n</span></h3><p><span>정수 n을 d로 나누어 몫 q를 구하는 연산 또는 n=dq를 만족하는 정수 q를 구하는 연산</span></p><ul><li><span>d|n: d로 n을 나눈다. (d≠0)</span></li><li><span>d∤n: d는 n을 나누지 못한다.</span></li></ul><ul><li><span>q: 몫(quotient)</span></li><li><span>d: n의 약수(divisor) 또는 인수(factor)</span></li><li><span>n: d의 배수</span></li></ul><p>&nbsp;</p><h4><a name="나누기-연산의-규칙a-b-c-d-m-n은-정수" class="md-header-anchor"></a><span>나누기 연산의 규칙(a, b, c, d, m, n은 정수)</span></h4><ul><li><p><span>d|m이고 d|n이면 d|(m+n)</span></p><ul><li><span>m=dk, n=dl (k, l∈Z) ∴m+n=dk+dl=d(k+l)</span></li></ul></li><li><p><span>d|m이고 d|n이면 d|(m-n)</span></p><ul><li><span>m=dk, n=dl ∴m-n=dk-dl=d(k-l)</span></li></ul></li><li><p><span>d|m이면 d|mn</span></p><ul><li><span>m=dk, mn=dkn=d(kn)</span></li></ul></li><li><p><span>a|b이고 b|c이면 a|c</span></p><ul><li><span>b=ak, c=bl c=akl=a(kl)</span></li></ul></li></ul><p>&nbsp;</p><h3><a name="나머지-연산-n-mod-d" class="md-header-anchor"></a><span>나머지 연산 n mod d</span></h3><p><span>정수 n을 d로 나누어 나오는 몫 q와 나머지 r이 있을 때, r을 구하는 연산 또는 n=dq+r을 만족하는 정수 r을 구하는 연산</span></p><ul><li><strong><span>n mod d = r</span></strong></li><li><span>q: 몫(quotation)</span></li><li><span>d: n의 약수(divisor) 또는 인수(factor)</span></li><li><span>n: d의 배수</span></li><li><span>r: 나머지(remainder), 0≤r&lt;d</span></li><li><strong><span>n mod d = 0 ⇔ d|n</span></strong></li></ul><p>&nbsp;</p><h2><a name="수-체계" class="md-header-anchor"></a><span>수 체계</span></h2><h3><a name="10진수decimal-number" class="md-header-anchor"></a><span>10진수(Decimal Number)</span></h3><p><span>기수를 10으로 하는 수 체계, 0에서 9사이의 숫자를 이용해 수를 표현</span></p><ul><li><p><span>정수 n에 대해 (k&gt;0, 0≤a≤9) </span></p><p><span>n</span><sub><span>10</span></sub><span> </span></p><p><span>= a</span><sub><span>k</span></sub><span>a</span><sub><span>k-1</span></sub><span> …a</span><sub><span>1</span></sub><span>a</span><sub><span>0</span></sub><span> </span></p><p><span>= a</span><sub><span>k</span></sub><span>10</span><sup><span>k</span></sup><span>+a</span><sub><span>k-1</span></sub><span>10</span><sup><span>k-1</span></sup><span>+…+a</span><sub><span>1</span></sub><span>10</span><sup><span>1</span></sup><span>+a</span><sub><span>0</span></sub><span>10</span><sup><span>0</span></sup></p></li><li><p><span>실수 n에 대해 (k,l&gt;0, 0≤a≤9)</span></p><p><span>n10 </span></p><p><span>= a</span><sub><span>k</span></sub><span>a</span><sub><span>k-1</span></sub><span> …a</span><sub><span>1</span></sub><span>a</span><sub><span>0</span></sub><span>a</span><sub><span>-1</span></sub><span>a</span><sub><span>-2</span></sub><span>…a</span><sub><span>-l</span></sub><span> … </span></p><p><span>= a</span><sub><span>k</span></sub><span>10</span><sup><span>k</span></sup><span>+a</span><sub><span>k-1</span></sub><span>10</span><sup><span>k-1</span></sup><span>+…+a</span><sub><span>1</span></sub><span>10</span><sup><span>1</span></sup><span>+a</span><sub><span>0</span></sub><span>10</span><sup><span>0</span></sup><span> +a</span><sub><span>-1</span></sub><span>10</span><sup><span>-1</span></sup><span>+a</span><sub><span>-2</span></sub><span>10</span><sup><span>-2</span></sup><span>+…+a</span><sub><span>-l</span></sub><span>10</span><sup><span>-l</span></sup><span>+…</span></p></li></ul><p>&nbsp;</p><h3><a name="2진수binary-number" class="md-header-anchor"></a><span>2진수(Binary Number)</span></h3><p><span>기수를 2로 하는 수 체계, 0과 1을 이용해 수 표현</span></p><ul><li><p><span>실수 n에 대해 (k,l&gt;0, a=1 또는 0)</span></p><p><span>n</span><sub><span>2</span></sub><span> </span></p><p><span>= a</span><sub><span>k</span></sub><span>a</span><sub><span>k-1</span></sub><span> …a</span><sub><span>1</span></sub><span>a</span><sub><span>0</span></sub><span>a</span><sub><span>-1</span></sub><span>a</span><sub><span>-2</span></sub><span>…a</span><sub><span>-l</span></sub><span> …</span></p><p><span>= a</span><sub><span>k</span></sub><span>2</span><sup><span>k</span></sup><span>+a</span><sub><span>k-1</span></sub><span>2</span><sup><span>k-1</span></sup><span>+…+a</span><sub><span>1</span></sub><span>2</span><sup><span>1</span></sup><span>+a</span><sub><span>0</span></sub><span>2</span><sup><span>0</span></sup><span>
++a</span><sub><span>-1</span></sub><span>2</span><sup><span>-1</span></sup><span>+a</span><sub><span>-2</span></sub><span>2</span><sup><span>-2</span></sup><span>+…+a</span><sub><span>-l</span></sub><span>2</span><sup><span>-l</span></sup><span>+…</span></p></li></ul><p>&nbsp;</p><h3><a name="8진수-octal-number" class="md-header-anchor"></a><span>8진수 (Octal Number)</span></h3><p><span>기수를 8로 하는 수 체계, 0에서 7사이의 숫자를 이용해 수를 표현</span></p><ul><li><p><span>실수 n에 대해 (k,l&gt;0, 0≤a≤7)</span></p><p><span>n8 </span></p><p><span>= a</span><sub><span>k</span></sub><span>a</span><sub><span>k-1</span></sub><span> …a</span><sub><span>1</span></sub><span>a</span><sub><span>0</span></sub><span>a</span><sub><span>-1</span></sub><span>a</span><sub><span>-2</span></sub><span>…a</span><sub><span>-l</span></sub><span> …</span></p><p><span>= = a</span><sub><span>k</span></sub><span>8</span><sup><span>k</span></sup><span>+a</span><sub><span>k-1</span></sub><span>8</span><sup><span>k-1</span></sup><span>+…+a</span><sub><span>1</span></sub><span>8</span><sup><span>1</span></sup><span>+a</span><sub><span>0</span></sub><span>8</span><sup><span>0</span></sup><span>
++a</span><sub><span>-1</span></sub><span>8</span><sup><span>-1</span></sup><span>+a</span><sub><span>-2</span></sub><span>8</span><sup><span>-2</span></sup><span>+…+a</span><sub><span>-l</span></sub><span>8</span><sup><span>-l</span></sup><span>+…</span></p></li></ul><p>&nbsp;</p><h3><a name="16진수-hexadecimal-number" class="md-header-anchor"></a><span>16진수 (Hexadecimal Number)</span></h3><p><span>기수를 16으로 하는 수 체계, 0에서 9와 A(10)에서 F(15) 사이의 숫자를 이용해 수를 표현</span></p><ul><li><p><span>실수 n에 대해 (k,l&gt;0, 0≤a≤9 또는 A≤a≤F)</span></p><p><span>n16 </span></p><p><span>= a</span><sub><span>k</span></sub><span>a</span><sub><span>k-1</span></sub><span> …a</span><sub><span>1</span></sub><span>a</span><sub><span>0</span></sub><span>a</span><sub><span>-1</span></sub><span>a</span><sub><span>-2</span></sub><span>…a</span><sub><span>-l</span></sub><span> …</span></p><p><span>= a</span><sub><span>k</span></sub><span>16</span><sup><span>k</span></sup><span>+a</span><sub><span>k-1</span></sub><span>16</span><sup><span>k-1</span></sup><span>+…+a</span><sub><span>1</span></sub><span>16</span><sup><span>1</span></sup><span>+a</span><sub><span>0</span></sub><span>16</span><sup><span>0</span></sup><span>
++a</span><sub><span>-1</span></sub><span>16</span><sup><span>-1</span></sup><span>+a</span><sub><span>-2</span></sub><span>16</span><sup><span>-2</span></sup><span>+…+a</span><sub><span>-l</span></sub><span>16</span><sup><span>-l</span></sup><span>+…</span></p></li></ul><p>&nbsp;</p><p><strong><span>예제4-15.</span></strong><span> 9B.FE316을 기수와 자리수를 이용해 풀어 쓰시오.</span></p><p><span>9B.FE3</span><sub><span>16</span></sub><span> </span></p><p><span>= 9×16</span><sup><span>1</span></sup><span>+B×16</span><sup><span>0</span></sup><span> +F×16</span><sup><span>-1</span></sup><span>+ E×16</span><sup><span>-2</span></sup><span>+3×16</span><sup><span>-3</span></sup></p><p><span>= 9×16</span><sup><span>1</span></sup><span>+11×16</span><sup><span>0</span></sup><span> +15×16</span><sup><span>-1</span></sup><span>+14×16</span><sup><span>-2</span></sup><span>+3×16</span><sup><span>-2</span></sup></p><p>&nbsp;</p><p><strong><span>예제 4-17.</span></strong><span> 다음 2진수를 연산하시오.</span></p><p><span>101+11, 100-11, 1101×11, 10110÷101</span></p><p><img src="https://user-images.githubusercontent.com/50407047/95014961-6895d900-0685-11eb-8823-0145b091bda1.png" referrerpolicy="no-referrer" alt="image"></p><p>&nbsp;</p><p><strong><span>예제 4-19.</span></strong><span> 다음 16진수를 연산하시오.</span></p><p><span>939+99, 5A4-CE, D82×39, BB1÷3C</span></p><p><img src="https://user-images.githubusercontent.com/50407047/95014989-82372080-0685-11eb-812b-11b210fecc3e.png" referrerpolicy="no-referrer" alt="image"></p><p><strong><span>예제 4-20.</span></strong><span> 10진수 163.875를 2진수로 변환</span></p><p><img src="https://user-images.githubusercontent.com/50407047/95015026-a5fa6680-0685-11eb-8ca9-95044132ae73.png" referrerpolicy="no-referrer" alt="image"></p><p><strong><span>예제 4-20.</span></strong><span> 10진수 163.875를 8, 16진수로 변환</span></p><p><span>163.87510 = 10100011.1112</span></p><p><img src="https://user-images.githubusercontent.com/50407047/95015048-c2969e80-0685-11eb-8f5a-182833a25ee1.png" referrerpolicy="no-referrer" alt="image"></p></div>
+</body>
+</html>

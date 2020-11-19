@@ -164,4 +164,46 @@ let obj = Object.fromEntries(map.entries()); // 맵을 일반 객체로 변환
 
 `map.entries()`를 호출하면 맵의 **`[키, 값]`을 요소로 가지는 이터러블을 반환**한다. 
 
-다음과 같이 
+다음과 같이 `.entries()`를 생략할 수도 있다.
+
+```js
+ let obj = Object.fromEntries(map);
+```
+
+### Set
+
+**중복을 허용하지 않는** 값을 모아놓은 특별한 컬렉션이다. **셋에 키가 없는 값**이 저장된다.
+
+- `new Set(iterable)`: 셋을 만든다. `이터러블` 객체를 전달받으면 (대개 배열을 전달받음) 그 안의 값을 복사해 셋에 넣어준다.
+- `set.add(value)`
+- `set.delete(value)`
+- `set.has(value)`
+- `set.clear()`
+- `set.size`
+
+셋 내 동일한 값(value)이 있다면 `set.add(value)`을 호출하더라도 반응이 없을 것이다. 한 방문자가 여러번 방문해도 방문자를 중복해서 기록하지 않겠다고 할 때 적합한 자료구조가 `셋`이다
+
+중복 값 여부는 배열 메서드인 `arr.find`를 이용해 확인할 수 있다. 그러나 `arr.find`는 배열 내 요소 전체를 뒤져 중복 값을 찾기 때문에, 셋보다 성능 면에서 떨어진다. 
+
+### 셋의 값에 반복 작업하기
+
+`for..of`나 `forEach`를 사용하면 셋의 값을 대상으로 반복 작업을 수행할 수 있다.
+
+```js
+let set = new Set(["oranges", "apples", "bananas"]);
+for (let value of set) alert(value);
+set.forEach((value, valueAgain, set) => {
+  alert(value);
+});
+```
+
+- 리틀 엔디언, 빅엔디언 개념 정리
+- modern js: 오늘 한 내용 (`map, set, weakmap, weakset)
+- passport. -> auth
+
+
+
+- 원스레드에 비동기 방식: nodeJS 특이한 경우.
+- async 를 쓰는 거 자체가 이상(특이)
+- 자바스크립트는 지원하는 브라우저에 대해서.. 
+

@@ -1,4 +1,6 @@
-## 1강 프로젝트 환경설정
+# Section 1. 프로젝트 환경설정
+
+## 1강. 프로젝트 생성
 
 -  요즘은 Maven보다는 Gradle을 많이 사용하는 추세이다. 
 - spring initializr(https://start.spring.io/)
@@ -122,3 +124,54 @@ Spring Boot 공식문서에서 제안하고 있는 템플릿 엔진에는 `FreeM
 
 [thymeleaf 공식문서](https://www.thymeleaf.org/)
 
+**hello.hellospring.controller.HelloController**
+
+```java
+@Controller
+public class HelloController {
+    @GetMapping("hello")
+    public String hello(Model model) {
+        model.addAttribute("data", "hello");
+        return "hello";
+    }
+}
+```
+
+**resources/templates/hello.html**
+
+```html
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+<p th:text="'안녕하세요. ' + ${data}">안녕하세요. 손님</p>
+</body>
+</html>
+```
+
+### 동작 환경
+
+웹 브라우저에서 `localhost:8080/hello`라는 url로 접속을 하면 내장 톰캣 서버가 그것을 받아서 스프링 컨테이너의 helloController의 `@GetMapping("hello")` 애노테이션이 붙어 있는 hello 메서드를 실행한다. 여기서 파라미터로 받은 모델 객체에 데이터를 담고, 문자열 `"hello"`를 리턴한다. 그러면 `viewResolver`가 앞뒤에 경로와 확장자를 붙여서 `resources/template/hello.html`을 실행한다. 템플릿에서는 모델에 담은 데이터를 꺼내쓸 수 있다.
+
+- 컨트롤러에서 리턴값으로 문자를 반환하면 뷰 리졸버(`viewResolver`)가 화면을 찾아서 처리한다.
+  - 스프링 부트 템플릿엔진 기본 `viewName` 매핑
+  - `resources:templates/` + `{ViewName}` + `.html`
+
+> `spring-boot-devtools` 라이브러리를 추가하면, `html` 파일을 컴파일만 해주면 서버 재시작 없이 `View` 파일 변경이 가능하다.
+
+
+
+## 4강. 빌드하고 실행하기
+
+```console
+gradlew build
+cd build/libs
+java -jar hello-spring-0.0.1-SNAPSHOT.jar
+```
+
+서버 배포할 때는 이 파일만 복사해서 서버에 넣고 java -jar 해서 실행시키면 된다. 그러면 서버에서 스프링이 동작을 하게 된다. 과거에는 톰캣을 서버에 직접 설치하고 특정 폴더에 war를 만들어서 집어넣는 과정이 있어야 했다. 지금은 jar 파일 하나만 복사하고 이를 실행시키면 된다.
+
+빌드가 잘 안된다면 `./gradlew clean`, `./gradlew.clean build` 명령어를 실행한다. 이 명령어는 빌드 폴더를 깔끔하게 비워서 다시 초기 상태에서 빌드할 수 있게 해준다. 

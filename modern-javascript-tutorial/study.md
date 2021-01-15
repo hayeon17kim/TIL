@@ -731,5 +731,300 @@ alert( null >= 0 ); // (3) true
 
 if문은 괄호 안의 표현식을 평가하고 그 결과를 불린값으로 변환한다.
 
-- 숫자 0, 빈 문자열 `""`, `null`, 
+- **falsy(거짓 같은) 값**: 숫자 0, 빈 문자열 `""`, `null`, `undefined`, `NaN`와 같이 불린형으로 변환 시 `false`가 되는 값
+- **truthy(참 같은) 값**: falsy 값 이외의 값은 불린형으로 변환 시 `true`가 된다.
+
+### 조건부 연산자 '?'
+
+**조건에 따라 다른 값**을 **변수에 할당**해줘야 할 때 사용한다.
+
+```js
+let result = condition ? value1 : value2;
+```
+
+다음 if else 문을 조건부(conditional) 연산자(물음표(question mark) 연산자; 삼항(ternary) 연산자)를 사용하여 간결하게 변형할 수 있다.
+
+```js
+let accessAllowed;
+let age = prompt('나이를 입력해 주세요.', '');
+
+if (age > 18) {
+  accessAllowed = true;
+} else {
+  accessAllowed = false;
+}
+```
+
+```js
+let accessAllowed = (age > 18) ? true : false;
+// let accessAllowed = age > 18 ? true : false;
+// let accessAllowed = age > 18;
+```
+
+### 부적절한 '?'
+
+물음표 `?`를 `if` 대용으로 쓰는 경우가 종종 있다. 다음과 같이 물음표 연산자를 사용하는 것은 좋지 않다. 
+
+```js
+let company = prompt('자바스크립트는 어떤 회사가 만들었을까요?', '');
+
+(company == 'Netscape') ?
+   alert('정답입니다!') : alert('오답입니다!');
+```
+
+물음표 연산자 `?`는 **조건에 따라 반환 값을 달리하려는 목적으로 만들어졌다.** 따라서 목적에 부합하도록 **평가 결과를 변수에 할당할 때 사용**하는 것이 좋다.
+
+위 코드는 다음과 같이 바꿔 쓰는 것이 가독성에 더 좋다.
+
+```js
+let company = prompt('자바스크립트는 어떤 회사가 만들었을까요?', '');
+
+if (company == 'Netscape') {
+  alert('정답입니다!');
+} else {
+  alert('오답입니다!');
+}
+```
+
+### 과제
+
+#### if와 문자열 0
+
+다음 코드에서 alert은 실행된다. `"0"`은 truthy한 값이기 때문에 불린형으로 바꿨을때 true가 반환된다. **빈 문자열을 제외한 모든 문자열은 논리 평가 시 `true`를 반환한다.**
+
+```js
+if ("0") {
+  alert( 'Hello' );
+}
+```
+
+#### 'if'를 '?'로 교체하기
+
+```js
+let result;
+
+if (a + b < 4) {
+  result = '미만';
+} else {
+  result = '이상';
+}
+```
+
+위 코드는 다음과 같이 변형될 수 있다.
+
+```js
+let result = (a + b < 4) ? '미만' : '이상'
+```
+
+#### 'if...else'를 '?'로 교체하기
+
+```js
+let message;
+
+if (login == '직원') {
+  message = '안녕하세요.';
+} else if (login == '임원') {
+  message = '환영합니다.';
+} else if (login == '') {
+  message = '로그인이 필요합니다.';
+} else {
+  message = '';
+}
+```
+
+위 코드는 다음과 같이 변형될 수 있다.
+
+```js
+let message = 
+    (login == '직원') ? '안녕하세요' :
+	 	(login == '임원') ? '환영합니다.' :
+		(login == '') ? '로그인이 필요합니다.' : 
+		'';
+```
+
+## 2.11. 논리 연산자
+
+논리연산자에는 `||`(OR), `&&`(AND), `!`(NOT) 세 가지가 있다. 논리연산자는 **피연산자**로 불린형뿐만 아니라 **모든 타입의 값을 받을 수 있다.** **연산 결과** 역시 **모든 타입**이 될 수 있다.
+
+### `||`(OR)
+
+```js
+alert( true || true );   // true
+alert( false || true );  // true
+alert( true || false );  // true
+alert( false || false ); // false
+```
+
+피연산자가 모두 `false`인 경우를 제외하고 연산 결과는 항상 `true`이다.
+
+피연산자가 불린형이 아니면, 평가를 위해 불린형으로 변환된다.
+
+#### 첫 번째 truthy를 찾는 OR 연산자 '||'
+
+자바스크립트에서만 제공하는 논리연산자 OR의 '추가' 기능이 있다. 
+
+```js
+result = value1 || value2 || value3;
+```
+
+- 가장 왼쪽 피연산자부터 시작해 오른쪽으로 나아가며 피연산자를 평가한다.
+- 각 피연산자를 불린형으로 변환한다. 변환 후 그 값이 true이면 연산을 멈추고 **해당 피연산자의 변환 전 원래 값을 반환**한다.
+- 피연산자 모두를 평가한 경우(모든 피연산자가 `false`로 평가되는 경우)엔 마지막 피연산자를 반환한다. 
+
+즉 OR `||` 연산자를 여러 개 체이닝(chaining) 하면 첫 번째 truthy를 반환한다. 피연산자에 truthy가 하나도 없다면 마지막 피연산자를 반환한다.
+
+#### OR 연산자의 활용
+
+1. **변수 또는 표현식으로 구성된 목록에서 첫 번째 truthy 얻기**
+
+   OR `||`을 사용하면 실제 값이 들어있는 변수를 찾고, 그 값을 보여줄 수 있다.
+
+   ```js
+   let firstName = "";
+   let lastName = "";
+   let nickName = "바이올렛";
+   
+   alert( firstName || lastName || nickName || "익명"); // 바이올렛
+   ```
+
+2. **단락 평가(short circuit evaluation)**
+
+   OR은 왼쪽부터 시작해서 오른쪽으로 평가를 진행하는데, truthy를 만나면 **나머지 값들은 건드리지 않은 채 평가를 멈춘다.** 이런 프로세스를 '단락 평가'라고 한다. 단락 평가의 동작 방식은 **두 번째 피연산자가 변수 할당과 같은 부수적인 효과(side effect)를 가지는 표현식**일 때 명확히 볼 수 있다.
+
+   두 번째 메시지만 출력된다.
+
+   ```js
+   true || alert("not printed");
+   flase || alert("printed");
+   ```
+
+   단락 평가는 **연산자 왼쪽 조건이 falsy일 때만 명령어를 실행하고자 할 때** 자주 쓰인다.
+
+
+
+### && (AND)
+
+두 피연산자가 모두가 참일 때 `true`를 반환한다. 그 외의 경우는 `false`를 반환한다.
+
+```js
+alert( true && true );   // true
+alert( false && true );  // false
+alert( true && false );  // false
+alert( false && false ); // false
+```
+
+OR 연산자와 마찬가지로 AND 연산자의 피연산자도 타입에 제약이 없다.
+
+**`&&`의 우선순위가 `||`보다 높다.** 따라서 `a && b || c && d`는 `(a && b) || (c && d)`와 동일하게 동작한다.
+
+#### 첫 번째 falsy를 찾는 AND연산자 '&&'
+
+```js
+result = value1 && value2 && value3;
+```
+
+- 가장 왼쪽 피연산자부터 시작해 오른쪽으로 나아가며 피연산자를 평가한다.
+- 각 피연산자는 불린형으로 변환된다. 변환 후 값이 `false`이면 평가를 멈추고 **해당 피연산자**의 **변환 전** **원래 값을 반환**한다.
+- 피연산자 모두가 평가되는 경우(모든 피연산자가 `true`로 평가되는 경우)엔 마지막 피연산자가 반환된다.
+
+즉 AND 연산자는 **첫 번째 falsy를 반환**한다. **피연산자에 falsy가 없다면 마지막 값을 반환**한다. OR이 첫 번째 truthy를 반환하는 것과는 반대다.
+
+### ! (NOT)
+
+NOT 연산자는 인수를 하나만 받고, 다음 순서대로 연산을 수행한다.
+
+1. 피연산자를 불린형(`true / false`)으로 변환한다.
+2. 1에서 변환된 값의 역을 반환한다. 
+
+**NOT을 두 개 연달아 사용(`!!`)하면 값을 불린형으로 변환**할 수 있다. `Boolean` 내장함수를 사용하면 `!!`을 사용한 것과 같은 결과를 도출할 수 있다. 
+
+`NOT` 연산자의 우선순위는 모든 논리 연산자 중에서 가장 높기 때문에 항상 `&&`나 `||`보다 먼저 실행된다.
+
+### 과제
+
+#### 다음 OR 연산의 결과는?
+
+```js
+alert( null || 2 || undefined );
+```
+
+첫 번째 truthy한 값인 2를 반환한다.
+
+#### OR 연산자의 피연산자가 alert라면?
+
+```js
+alert( alert(1) || 2 || alert(3) );
+```
+
+`alert()` 함수는 falsy한 값인 undefined를 리턴한다. 따라서 첫 번째 truthy한 값인 2가 반환된다. 그러면 OR 연산자는 나머지 값은 건드리지 않고 평가를 멈추기 때문에 1만 출력되고 3은 출력되지 않는다.
+
+#### 다음 AND 연산의 결과는?
+
+```js
+alert( 1 && null && 2 );
+```
+
+피연산자 중 첫 번째 falsy인 null이 출력된다.
+
+#### AND 연산자의 피연산자가 alert이라면?
+
+```js
+alert( alert(1) && alert(2) );
+```
+
+alert() 함수는 undefined를 반환한다. 따라서 false를 출력하고 평가를 즉시 멈춘다.
+
+#### OR AND OR 연산자로 구성된 표현식
+
+```js
+alert( null || 2 && 3 || 4 );
+```
+
+`&&` 연산자는 우선순위가 `||`보다 높기 때문에 우선 `2 && 3`을 먼저 실행한다. 피연산자 모두 truthy한 값이기 때문에 마지막 값인 3이 반환된다. 
+
+```js
+alert( null || 3 || 4 );
+```
+
+첫번째 truthy한 값인 3이 출력된다.
+
+#### "if"에 관한 고찰
+
+아래 표현식에서 어떤 `alert`가 실행될까요?
+
+```js
+if (-1 || 0) alert( 'first' ); 
+if (-1 && 0) alert( 'second' );
+if (null || -1 && 1) alert( 'third' );
+```
+
+첫번째, 세번째 표현식에 있는 alert이 실행된다.
+
+#### 로그인 구현하기
+
+```js
+let userName = prompt("사용자 이름을 입력해주세요.", '');
+
+if (userName == 'Admin') {
+
+  let pwd = prompt('비밀번호:', '');
+
+  if (pwd == 'TheMaster') {
+    alert( '환영합니다!' );
+  } else if (pwd == '' || pwd == null) {
+    alert( '취소되었습니다.' );
+  } else {
+    alert( '인증에 실패하였습니다.' );
+  }
+
+} else if (userName == '' || userName == null) {
+  alert( '취소되었습니다.' );
+} else {
+  alert( "인증되지 않은 사용자입니다." );
+}
+```
+
+
+
+## 2.12. null 병합 연산자(nullish coalescing operator) '??'
 

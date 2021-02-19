@@ -521,6 +521,11 @@ spring.jpa.hibernate.ddl-auto=none
 
 JPA는 객체와 ORM(Object Relational Mapping; 객체-관계 매핑) 기술이다. ORM이란 **객체와 관계형 데이터베이스의 데이터**를 **자동으로 매핑(연결)해주는 것**을 말한다. 객체 모델과 관계형 모델 간에 불일치가 존재하는데, ORM을 통해 객체 간의 관계를 바탕으로 SQL을 자동으로 생성하여 불일치를 해결한다. 이 **매핑은 Annotation으로 만들어준다.**
 
+- `@Entity`: 객체에 이 애노테이션을 붙이면 JPA가 관리하는 Entity가 된다.
+- `@Id`: PK를 매핑
+- `@GeneratedValue(strategy=GenerationType.IDENTITY)`: DB에서 생성되는 값 (Identity: DB가 알아서 생성해주는 것)
+- `@Column(name="username")`: 객체 필드명(name)과 컬럼명(username)이 다르다면 이 애노테이션으로 매핑한다.  
+
 ```java
 package hello.hellospring.domain;
 
@@ -553,6 +558,14 @@ public class Member {
 
 **JPA 회원 리포지토리**
 
+- **JPA를 쓰려면 EntityManager를 주입받아야 한다.**
+- `EntityManager`: JPA는 EntityManager로 모든 것이 동작한다. `spring-boot-starer-data-jpa` 라이브러리를 다운받으면 스프링부트가 EntityManager를 자동으로 만들어준다. Entity Manager는 스프링이 `properties` 정보와 데이터베이스 커넥션 정보를 기반으로 현재 데이터베이스랑 연결을 해놓은 것이다. 그럼 이렇게 만들어진 EntityManager를 주입받으면 된다.
+- EntityManager는 dataSource 객체 등을 내부적으로 가지고 있다. 따라서 DB와 통신하는 것을 다 처리한다.
+- `persist()`: 영속하다. 영구 저장하다. JPA 내부적으로 insert 해주고 Generated된 PK를 `setId()`를 호출하여 셋팅하는 일까지 해준다.
+- `find()`: PK로 조회하는 것을 이 메서드를 사용하면 된다.
+- `createQuery("select m from m", Member.class)`: PK로 조회하는 것이 아니라면 JPQL이라는 객체지향 쿼리를 써야 한다. SQL은 테이블을 대상으로 쿼리를 날리지만, JPQL은 Entity를 대상으로 쿼리를 날린다는 게 차이점이다. 이때, `select * from Member m`이 아니라 `select m from Member m`으로 객체 자체를 select한다. 
+- 한편 스프링 데이터 JPA를 사용하면 findAll, findByName를 작성할 때 createQuery를 사용하지 않아도 된다.
+
 ```java
 package hello.hellospring.repository;
 
@@ -566,6 +579,7 @@ public class JpaMemberRepository implements MemberRepository {
 
   @Override
   public Member save(Member member) {
+    // persist: 영속하다. 영구저장하다.
     em.persist(member);
     return member;
   }
@@ -610,12 +624,10 @@ package hello.hellospring;
 @Configuration
 public class SpringConfig {
 
-  private DataSource dataSource;
   private final EntityManager em;
 
   @Autowired
-  public SpringConfig(DataSource dataSource, EntityManager em) {
-    this.dataSource = dataSource;
+  public SpringConfig(EntityManager em) {
     this.em = em;
   }
 
@@ -651,16 +663,23 @@ public class SpringConfig {
 
 **스프링 데이터 JPA 회원 리포지토리**
 
+- interface가 interface를 받을 때는 implements가 아니라 extends 를 사용한다.
+
 ```java
 package hello.hellospring.repository;
 
-public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Long>, MemberRepository {
+public interface SpringDataJpaMemberRepository extends JpaRepository<Member/*Entity*/, Long/*PK:id*/>, MemberRepository {
+  
+  // JPQL select m from Member m where m.name = ?
+  @Override
   Optional<Member> findByName(String name);
 }
 
 ```
 
 **스프링 데이터 JPA 회원 리포지토리를 사용하도록 스프링 설정 변경**
+
+`memberRepository`를 주입받게 만들면 스프링 데이터 JPA가 만들어놓은 구현체가 등록이 된다. 우리가 만든 것은 `SpringDataJpaMemberRepository` 인터페이스이다. 인터페이스를 생성하고 이 인터페이스가 `JpaRepository`를 상속하게 만들면 스프링 데이터 JPA가 인터페이스에 대한 구현체를 만들어주고, 스프링 빈에 등록을 한다. 그래서 우리는 Injection을 받을 수 있다. 주입을 받아서 
 
 ```java
 package hello.hellospring;
@@ -670,7 +689,7 @@ public class SpringConfig {
 
   private final MemberRepository memberRepository;
 
-  @Autowired
+  @Autowired // 생략가능
   public SpringConfig(MemberRepository memberRepository) {
     this.memberRepository = memberRepository;
   }
@@ -683,7 +702,7 @@ public class SpringConfig {
 
 ```
 
-- **스프링 데이터 JPA가 `SpringDataJpaMemberRepository`를 스프링 빈으로 자동 등록해준다.**
+**스프링 데이터 JPA가 `SpringDataJpaMemberRepository`를 스프링 빈으로 자동 등록해준다.**
 
 
 
@@ -694,10 +713,16 @@ public class SpringConfig {
 **스프링 데이터 JPA 제공 기능**
 
 - 인터페이스를 통한 기본적인 CRUD
+
 - `findByName()`, `findByEmail()`처럼 메서드 이름만으로 조회 기능 제공
+
+  JpaRepository에 있는 메서드는 공통적인 메서드이다. `findByName()`, `findByEmail()`의 경우 비즈니즈가 다르기 때문에 공통화할 수 없을 것이다. 그래서 공통 클래스로 제공할 수 없다. 인터페이스에  `findByName(String name);` 를 작성하면 JPQL 코드`select m from Member m where m.name = ?`로 바꿔준다. 이렇게 인터페이스 이름만으로 개발이 끝날 수 있다. 복잡한 쿼리는 다른 해결방법이 있다. 그러나 단순한 기능은 이 방법으로 끝낼 수 있다.  
+
+  실제로는 스프링 데이터 JPA가 메서드 이름과 반환 타입, 파라미터를 Reflection 기술로 읽어서 풀어내는 과정이 내부적으로 동작한다. 
+
 - 페이징 기능 자동 제공
 
-> 실무에서는 JPA와 스프링 데이터 JPA를 기본으로 사용하고, 복잡한 동적 쿼리는 Querydsl이라는 라이브러리를 사용하면 된다. Querydsl을 사용하면 쿼리도 자바 코드로 안전하게 작성할 수 있고, 동적 쿼리도 편리하게 작성할 수 있다. 이 조합으로 해결하기 어려운 쿼리는 JPA가 제공하는 네이티브 쿼리를 사용하거나, 앞서 학습한 스프링 JdbcTemplate을 사용하면 된다.
+실무에서는 **JPA와 스프링 데이터 JPA를 기본으로 사용**하고, **복잡한 동적 쿼리**는 **Querydsl**이라는 라이브러리를 사용하면 된다. Querydsl을 사용하면 **쿼리도 자바 코드로 안전하게 작성**할 수 있고, **동적 쿼리**도 편리하게 작성할 수 있다. 
 
-
+**이 조합으로 해결하기 어려운 쿼리는 JPA가 제공하는 네이티브 쿼리를 사용**하거나, 앞서 학습한 스프링 **JdbcTemplate**을 사용하면 된다. Hibernate 기술 만든 사람도 100% ORM 방식으로 해결하라고 개발한 것이 아니라고 말한다. 따라서 ORM 방식에서도 native 쿼리를 사용할 수 있도록 열어놓았다. 필요하면 앞서 JdbcTemplate을 섞어 사용하거나 Mybatis 를 섞어 사용해도 된다!
 
